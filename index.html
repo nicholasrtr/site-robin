@@ -1,211 +1,221 @@
-<!DOCTYPE html>
-<html lang="pt-br">
-    <head>
+    <!DOCTYPE html>
+    <html lang="pt-br">
+        <head>
 
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Culto a Robin</title>
-        <style>
-            @import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Nunito:ital,wght@0,400;0,600;0,700;1,400&display=swap');
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Culto a Robin</title>
+            <style>
+                @import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Nunito:ital,wght@0,400;0,600;0,700;1,400&display=swap');
 
-body {
-    background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url("imagens/backpraia.png");
-    background-size: cover;
-    background-position: center;
-    background-attachment: fixed;
-    font-family: 'Nunito', sans-serif;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-    text-align: center;
-    color: #fff0f7;
-}
-h1 {
-    font-family: 'Fredoka', sans-serif;
-    font-size: 54px;
-    font-weight: 700;
-    text-align: center;
-    color: #ffb7d5;
-    margin-top: 5px;
-    text-shadow: 0 0 20px rgba(255, 183, 213, 0.7);
-}
-.santuario {
-    font-family: 'Fredoka', sans-serif;
-    font-size: 38px;
-    font-weight: 600;
-    color: #ffd6e7;
-    letter-spacing: 4px;
-    text-transform: uppercase;
-    margin-bottom: 0;
-    text-shadow: 0 0 15px rgba(255, 214, 231, 0.6);
-}
+    body {
+        background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url("imagens/backpraia.png");
+        background-size: cover;
+        background-position: center;
+        background-attachment: fixed;
+        font-family: 'Nunito', sans-serif;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        text-align: center;
+        color: #fff0f7;
+    }
+    h1 {
+        font-family: 'Fredoka', sans-serif;
+        font-size: 54px;
+        font-weight: 700;
+        text-align: center;
+        color: #ffb7d5;
+        margin-top: 5px;
+        text-shadow: 0 0 20px rgba(255, 183, 213, 0.7);
+    }
+    .santuario {
+        font-family: 'Fredoka', sans-serif;
+        font-size: 38px;
+        font-weight: 600;
+        color: #ffd6e7;
+        letter-spacing: 4px;
+        text-transform: uppercase;
+        margin-bottom: 0;
+        text-shadow: 0 0 15px rgba(255, 214, 231, 0.6);
+    }
 
-img {
-    border-radius: 20px;
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
-    margin: 25px 0;
-    animation: flutuar 3s ease-in-out infinite;
-}
+    img {
+        border-radius: 20px;
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+        margin: 25px 0;
+        animation: flutuar 3s ease-in-out infinite;
+    }
 
-@keyframes flutuar {
-    0%, 100% { transform: translateY(0px); }
-    50% { transform: translateY(-12px); }
-}
+    @keyframes flutuar {
+        0%, 100% { transform: translateY(0px); }
+        50% { transform: translateY(-12px); }
+    }
 
-body > p {
-    font-family: 'Nunito', sans-serif;
-    font-weight: 600;
-    font-size: 21px;
-    max-width: 500px;
-    margin: 10px 20px 30px;
-    color: #fff0f7;
-}
+    body > p {
+        font-family: 'Nunito', sans-serif;
+        font-weight: 600;
+        font-size: 21px;
+        max-width: 500px;
+        margin: 10px 20px 30px;
+        color: #fff0f7;
+    }
 
-button {
-    font-family: 'Fredoka', sans-serif;
-    font-weight: 600;
-    font-size: 19px;
-    color: #4a1030;
-    background: linear-gradient(135deg, #ffd6e7, #ffb7d5);
-    border: none;
-    padding: 14px 42px;
-    border-radius: 50px;
-    cursor: pointer;
-    box-shadow: 0 8px 20px rgba(255, 183, 213, 0.5);
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
-}
+    button {
+        font-family: 'Fredoka', sans-serif;
+        font-weight: 600;
+        font-size: 19px;
+        color: #4a1030;
+        background: linear-gradient(135deg, #ffd6e7, #ffb7d5);
+        border: none;
+        padding: 14px 42px;
+        border-radius: 50px;
+        cursor: pointer;
+        box-shadow: 0 8px 20px rgba(255, 183, 213, 0.5);
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
 
-button:hover {
-    transform: translateY(-3px) scale(1.05);
-    box-shadow: 0 12px 28px rgba(255, 183, 213, 0.7);
-}
+    button:hover {
+        transform: translateY(-3px) scale(1.05);
+        box-shadow: 0 12px 28px rgba(255, 183, 213, 0.7);
+    }
 
-button:active {
-    transform: translateY(0) scale(0.98);
-}
+    button:active {
+        transform: translateY(0) scale(0.98);
+    }
 
-button:disabled {
-    cursor: default;
-    opacity: 0.85;
-}
+    button:disabled {
+        cursor: default;
+        opacity: 0.85;
+    }
 
-#contador {
-    font-family: 'Fredoka', sans-serif;
-    font-size: 44px;
-    font-weight: 700;
-    color: #ffe9f3;
-    margin-top: 15px;
-    text-shadow: 0 0 18px rgba(255, 183, 213, 0.7);
-}
+    #contador {
+        font-family: 'Fredoka', sans-serif;
+        font-size: 44px;
+        font-weight: 700;
+        color: #ffe9f3;
+        margin-top: 15px;
+        text-shadow: 0 0 18px rgba(255, 183, 213, 0.7);
+    }
 
-#legenda {
-    font-family: 'Nunito', sans-serif;
-    font-weight: 600;
-    font-size: 16px;
-    color: #ffd6e7;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    margin-top: -8px;
-}
+    #legenda {
+        font-family: 'Nunito', sans-serif;
+        font-weight: 600;
+        font-size: 16px;
+        color: #ffd6e7;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        margin-top: -8px;
+    }
 
-#mensagem {
-    font-family: 'Fredoka', sans-serif;
-    font-size: 20px;
-    font-weight: 600;
-    color: #ffe9f3;
-    margin-top: 15px;
-    opacity: 0;
-    transform: translateY(10px);
-    transition: opacity 0.4s ease, transform 0.4s ease;
-}
+    #mensagem {
+        font-family: 'Fredoka', sans-serif;
+        font-size: 20px;
+        font-weight: 600;
+        color: #ffe9f3;
+        margin-top: 15px;
+        opacity: 0;
+        transform: translateY(10px);
+        transition: opacity 0.4s ease, transform 0.4s ease;
+    }
 
-#mensagem.visivel {
-    opacity: 1;
-    transform: translateY(0);
-}
+    #mensagem.visivel {
+        opacity: 1;
+        transform: translateY(0);
+    }
 
-/* Ajuste pra telas menores */
-@media (max-width: 600px) {
-    h1 { font-size: 36px; }
-    .santuario { font-size: 26px; }
-    img { width: 90% !important; }
-    #contador { font-size: 34px; }
-}
-        </style>
-    </head>
-    <body>
-      
-        <p class="santuario">Santuário</p>
-        <h1>Robin Summeretto </h1>
-        <img src="imagens/bobin.png" width="700">
-        <p>Aceita a divindade entrar em sua casa?</p>
+    /* Ajuste pra telas menores */
+    @media (max-width: 600px) {
+        h1 { font-size: 36px; }
+        .santuario { font-size: 26px; }
+        img { width: 90% !important; }
+        #contador { font-size: 34px; }
+    }
+            </style>
+        </head>
+        <body>
 
-        <div id="contador">—</div>
-        <div id="legenda">pessoas já aceitaram</div>
+<audio id="musica" loop>
+    <source src="Songs/Robin-mus.mp3" type="audio/mpeg">
+</audio>
 
-        <br>
-        <button id="botaoAceitar">Aceitar</button>
-        <p id="mensagem"></p>
+<script>
+document.addEventListener("click", () => {
+    document.getElementById("musica").play();
+}, { once: true });
+</script>
+        
+            <p class="santuario">Santuário</p>
+            <h1>Robin Summeretto </h1>
+            <img src="imagens/bobin.png" width="700">
+            <p>Aceita a divindade entrar em sua casa?</p>
 
-        <script>
-            const CHAVE = 'culto-a-robin-summeretto-2026';
-            const botao = document.getElementById('botaoAceitar');
-            const mensagem = document.getElementById('mensagem');
-            const contadorEl = document.getElementById('contador');
+            <div id="contador">—</div>
+            <div id="legenda">pessoas já aceitaram</div>
 
-            let valorAtual = 0;
+            <br>
+            <button id="botaoAceitar">Aceitar</button>
+            <p id="mensagem"></p>
 
-            // Anima o número subindo suavemente de um valor até outro
-            function animarContagem(de, ate, duracaoMs) {
-                const inicio = performance.now();
-                function passo(agora) {
-                    const progresso = Math.min((agora - inicio) / duracaoMs, 1);
-                    const suavizado = 1 - Math.pow(1 - progresso, 3); // easing suave no final
-                    const valor = Math.round(de + (ate - de) * suavizado);
-                    contadorEl.textContent = valor.toLocaleString('pt-BR');
-                    if (progresso < 1) {
-                        requestAnimationFrame(passo);
-                    } else {
-                        valorAtual = ate;
+            <script>
+                const CHAVE = 'culto-a-robin-summeretto-2026';
+                const botao = document.getElementById('botaoAceitar');
+                const mensagem = document.getElementById('mensagem');
+                const contadorEl = document.getElementById('contador');
+
+                let valorAtual = 0;
+
+                // Anima o número subindo suavemente de um valor até outro
+                function animarContagem(de, ate, duracaoMs) {
+                    const inicio = performance.now();
+                    function passo(agora) {
+                        const progresso = Math.min((agora - inicio) / duracaoMs, 1);
+                        const suavizado = 1 - Math.pow(1 - progresso, 3); // easing suave no final
+                        const valor = Math.round(de + (ate - de) * suavizado);
+                        contadorEl.textContent = valor.toLocaleString('pt-BR');
+                        if (progresso < 1) {
+                            requestAnimationFrame(passo);
+                        } else {
+                            valorAtual = ate;
+                        }
+                    }
+                    requestAnimationFrame(passo);
+                }
+
+                // Ao carregar a página, busca o valor atual sem incrementar
+                async function carregarValorInicial() {
+                    try {
+                        const resposta = await fetch(`https://countapi.mileshilliard.com/api/v1/get/${CHAVE}`);
+                        const dados = await resposta.json();
+                        const total = Number(dados.value) || 0;
+                        animarContagem(0, total, 1200);
+                    } catch (erro) {
+                        contadorEl.textContent = '0';
                     }
                 }
-                requestAnimationFrame(passo);
-            }
 
-            // Ao carregar a página, busca o valor atual sem incrementar
-            async function carregarValorInicial() {
-                try {
-                    const resposta = await fetch(`https://countapi.mileshilliard.com/api/v1/get/${CHAVE}`);
-                    const dados = await resposta.json();
-                    const total = Number(dados.value) || 0;
-                    animarContagem(0, total, 1200);
-                } catch (erro) {
-                    contadorEl.textContent = '0';
-                }
-            }
+                botao.addEventListener('click', async () => {
+                    botao.disabled = true;
+                    botao.textContent = 'Contando...';
 
-            botao.addEventListener('click', async () => {
-                botao.disabled = true;
-                botao.textContent = 'Contando...';
+                    try {
+                        const resposta = await fetch(`https://countapi.mileshilliard.com/api/v1/hit/${CHAVE}`);
+                        const dados = await resposta.json();
+                        const novoTotal = Number(dados.value);
 
-                try {
-                    const resposta = await fetch(`https://countapi.mileshilliard.com/api/v1/hit/${CHAVE}`);
-                    const dados = await resposta.json();
-                    const novoTotal = Number(dados.value);
+                        animarContagem(valorAtual, novoTotal, 900);
+                        mensagem.textContent = `🎉 Parabéns! Você acaba de aceitar a divindade!`;
+                    } catch (erro) {
+                        mensagem.textContent = '🎉 Parabéns por aceitar! (não consegui atualizar o contador agora)';
+                    } finally {
+                        mensagem.classList.add('visivel');
+                        botao.textContent = 'Aceito ✓';
+                    }
+                });
 
-                    animarContagem(valorAtual, novoTotal, 900);
-                    mensagem.textContent = `🎉 Parabéns! Você acaba de aceitar a divindade!`;
-                } catch (erro) {
-                    mensagem.textContent = '🎉 Parabéns por aceitar! (não consegui atualizar o contador agora)';
-                } finally {
-                    mensagem.classList.add('visivel');
-                    botao.textContent = 'Aceito ✓';
-                }
-            });
-
-            carregarValorInicial();
-        </script>
-    </body>
-</html>
+                carregarValorInicial();
+            </script>
+        </body>
+    </html>
