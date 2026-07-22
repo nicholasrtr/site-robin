@@ -149,7 +149,7 @@ document.addEventListener("click", () => {
         
             <p class="santuario">Santuário</p>
             <h1>Robin Summeretto </h1>
-            <img src="imagens/bobin.png" width="700">
+            <img id="imagemRobin" src="imagens/bobin.png" width="700">
             <p>Aceita a divindade entrar em sua casa?</p>
 
             <div id="contador">—</div>
@@ -197,6 +197,7 @@ document.addEventListener("click", () => {
                 }
 
                 botao.addEventListener('click', async () => {
+                    document.getElementById("imagemRobin").src = "imagens/convert.gif";
                     botao.disabled = true;
                     botao.textContent = 'Contando...';
 
