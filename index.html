@@ -136,21 +136,16 @@ button:disabled {
         </style>
     </head>
     <body>
-       <audio id="musica" loop>
+      <audio id="musica" loop>
     <source src="Songs/Robin-mus.mp3" type="audio/mpeg">
 </audio>
 
 <script>
-window.addEventListener("load", () => {
-    const musica = document.getElementById("musica");
+const musica = document.getElementById("musica");
 
-    function tocarMusica() {
-        musica.play().catch(() => {});
-        document.removeEventListener("click", tocarMusica);
-    }
-
-    document.addEventListener("click", tocarMusica);
-});
+document.addEventListener("click", function() {
+    musica.play();
+}, { once: true });
 </script>
         <p class="santuario">Santuário</p>
         <h1>Robin Summeretto </h1>
