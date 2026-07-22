@@ -1,23 +1,19 @@
-
-
-<!DOCTYPE html> <!-- VERSÃO DO HTML (MAIS NOVA)-->
-
+<!DOCTYPE html>
 <html lang="pt-br">
-
     <head>
-          
+
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Culto a Robin</title>
         <style>
-            @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap');
+            @import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Nunito:ital,wght@0,400;0,600;0,700;1,400&display=swap');
+
 body {
     background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url("imagens/backpraia.png");
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
-    font-family: 'Poppins', sans-serif;
-
+    font-family: 'Nunito', sans-serif;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -27,32 +23,127 @@ body {
     color: #fff0f7;
 }
 h1 {
-    font-size: 50px;
+    font-family: 'Fredoka', sans-serif;
+    font-size: 54px;
     font-weight: 700;
     text-align: center;
-    color: #ffb7d5
+    color: #ffb7d5;
+    margin-top: 5px;
+    text-shadow: 0 0 20px rgba(255, 183, 213, 0.7);
 }
 .santuario {
-        font-size: 40px;
-        font-weight: 700;
-        color: #ffd6e7;
-    }
-</style>
+    font-family: 'Fredoka', sans-serif;
+    font-size: 38px;
+    font-weight: 600;
+    color: #ffd6e7;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    margin-bottom: 0;
+    text-shadow: 0 0 15px rgba(255, 214, 231, 0.6);
+}
+
+img {
+    border-radius: 20px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+    margin: 25px 0;
+    animation: flutuar 3s ease-in-out infinite;
+}
+
+@keyframes flutuar {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-12px); }
+}
+
+body > p {
+    font-family: 'Nunito', sans-serif;
+    font-weight: 600;
+    font-size: 21px;
+    max-width: 500px;
+    margin: 10px 20px 30px;
+    color: #fff0f7;
+}
+
+button {
+    font-family: 'Fredoka', sans-serif;
+    font-weight: 600;
+    font-size: 19px;
+    color: #4a1030;
+    background: linear-gradient(135deg, #ffd6e7, #ffb7d5);
+    border: none;
+    padding: 14px 42px;
+    border-radius: 50px;
+    cursor: pointer;
+    box-shadow: 0 8px 20px rgba(255, 183, 213, 0.5);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+button:hover {
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: 0 12px 28px rgba(255, 183, 213, 0.7);
+}
+
+button:active {
+    transform: translateY(0) scale(0.98);
+}
+
+button:disabled {
+    cursor: default;
+    opacity: 0.85;
+}
+
+#mensagem {
+    font-family: 'Fredoka', sans-serif;
+    font-size: 20px;
+    font-weight: 600;
+    color: #ffe9f3;
+    margin-top: 20px;
+    opacity: 0;
+    transform: translateY(10px);
+    transition: opacity 0.4s ease, transform 0.4s ease;
+}
+
+#mensagem.visivel {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Ajuste pra telas menores */
+@media (max-width: 600px) {
+    h1 { font-size: 36px; }
+    .santuario { font-size: 26px; }
+    img { width: 90% !important; }
+}
+        </style>
     </head>
-
     <body>
-
         <p class="santuario">Santuário</p>
-
         <h1>Robin Summeretto </h1>
-
         <img src="imagens/bobin.png" width="700">
-
         <p>Aceita a divindade entrar em sua casa?</p>
+        <button id="botaoAceitar">Aceitar</button>
+        <p id="mensagem"></p>
 
-        <button>Aceitar</button>
-        
+        <script>
+            const botao = document.getElementById('botaoAceitar');
+            const mensagem = document.getElementById('mensagem');
 
+            botao.addEventListener('click', async () => {
+                botao.disabled = true;
+                botao.textContent = 'Contando...';
+
+                try {
+                    const resposta = await fetch('https://api.counterapi.dev/v1/culto-a-robin-summeretto/aceitos/up');
+                    const dados = await resposta.json();
+                    const total = dados.count.toLocaleString('pt-BR');
+
+                    mensagem.textContent = `🎉 Parabéns! Você e mais ${total} pessoas já aceitaram a divindade!`;
+                } catch (erro) {
+                    mensagem.textContent = '🎉 Parabéns por aceitar! (não consegui contar agora, mas obrigado 💗)';
+                } finally {
+                    mensagem.classList.add('visivel');
+                    botao.textContent = 'Aceito ✓';
+                }
+            });
+        </script>
     </body>
-
 </html>
