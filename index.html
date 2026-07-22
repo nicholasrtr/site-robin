@@ -151,88 +151,31 @@ button:disabled {
 
         <script>
             const CHAVE = 'culto-a-robin-summeretto-2026';
+            const botao = document.getElementById('botaoAceitar');
+            const mensagem = document.getElementById('mensagem');
+            const contadorEl = document.getElementById('contador');
 
-const botao = document.getElementById('botaoAceitar');
-const mensagem = document.getElementById('mensagem');
-const contadorEl = document.getElementById('contador');
+            let valorAtual = 0;
 
-let valorAtual = 0;
+            // Anima o número subindo suavemente de um valor até outro
+            function animarContagem(de, ate, duracaoMs) {
+                const inicio = performance.now();
+                function passo(agora) {
+                    const progresso = Math.min((agora - inicio) / duracaoMs, 1);
+                    const suavizado = 1 - Math.pow(1 - progresso, 3); // easing suave no final
+                    const valor = Math.round(de + (ate - de) * suavizado);
+                    contadorEl.textContent = valor.toLocaleString('pt-BR');
+                    if (progresso < 1) {
+                        requestAnimationFrame(passo);
+                    } else {
+                        valorAtual = ate;
+                    }
+                }
+                requestAnimationFrame(passo);
+            }
 
-function animarContagem(de, ate, duracaoMs) {
-    const inicio = performance.now();
-
-    function passo(agora) {
-        const progresso = Math.min((agora - inicio) / duracaoMs, 1);
-        const suavizado = 1 - Math.pow(1 - progresso, 3);
-        const valor = Math.round(de + (ate - de) * suavizado);
-
-        contadorEl.textContent = valor.toLocaleString('pt-BR');
-
-        if (progresso < 1) {
-            requestAnimationFrame(passo);
-        } else {
-            valorAtual = ate;
-        }
-    }
-
-    requestAnimationFrame(passo);
-}
-
-
-async function carregarValorInicial() {
-    try {
-        const resposta = await fetch(
-            `https://api.counterapi.dev/v1/${CHAVE}/`
-        );
-
-        const dados = await resposta.json();
-
-        const total = Number(dados.count) || 0;
-
-        animarContagem(0, total, 1200);
-
-    } catch (erro) {
-        console.log("Erro ao carregar contador:", erro);
-        contadorEl.textContent = '0';
-    }
-}
-
-
-botao.addEventListener('click', async () => {
-
-    botao.disabled = true;
-    botao.textContent = 'Contando...';
-
-    try {
-
-        const resposta = await fetch(
-            `https://api.counterapi.dev/v1/${CHAVE}/up`
-        );
-
-        const dados = await resposta.json();
-
-        const novoTotal = Number(dados.count);
-
-        animarContagem(valorAtual, novoTotal, 900);
-
-        mensagem.textContent = `🎉 Parabéns! Você acaba de aceitar a divindade!`;
-
-    } catch (erro) {
-
-        console.log("Erro ao contar:", erro);
-
-        mensagem.textContent = '🎉 Parabéns por aceitar!';
-
-    } finally {
-
-        mensagem.classList.add('visivel');
-        botao.textContent = 'Aceito ✓';
-
-    }
-});
-
-
-carregarValorInicial(); {
+            // Ao carregar a página, busca o valor atual sem incrementar
+            async function carregarValorInicial() {
                 try {
                     const resposta = await fetch(`https://countapi.mileshilliard.com/api/v1/get/${CHAVE}`);
                     const dados = await resposta.json();
@@ -266,3 +209,5 @@ carregarValorInicial(); {
         </script>
     </body>
 </html>
+
+ta assim
