@@ -91,12 +91,31 @@ button:disabled {
     opacity: 0.85;
 }
 
+#contador {
+    font-family: 'Fredoka', sans-serif;
+    font-size: 44px;
+    font-weight: 700;
+    color: #ffe9f3;
+    margin-top: 15px;
+    text-shadow: 0 0 18px rgba(255, 183, 213, 0.7);
+}
+
+#legenda {
+    font-family: 'Nunito', sans-serif;
+    font-weight: 600;
+    font-size: 16px;
+    color: #ffd6e7;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-top: -8px;
+}
+
 #mensagem {
     font-family: 'Fredoka', sans-serif;
     font-size: 20px;
     font-weight: 600;
     color: #ffe9f3;
-    margin-top: 20px;
+    margin-top: 15px;
     opacity: 0;
     transform: translateY(10px);
     transition: opacity 0.4s ease, transform 0.4s ease;
@@ -112,38 +131,96 @@ button:disabled {
     h1 { font-size: 36px; }
     .santuario { font-size: 26px; }
     img { width: 90% !important; }
+    #contador { font-size: 34px; }
 }
         </style>
     </head>
     <body>
+       <audio id="musica" loop>
+    <source src="Songs/Robin-mus.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+window.addEventListener("load", () => {
+    const musica = document.getElementById("musica");
+
+    function tocarMusica() {
+        musica.play().catch(() => {});
+        document.removeEventListener("click", tocarMusica);
+    }
+
+    document.addEventListener("click", tocarMusica);
+});
+</script>
         <p class="santuario">Santuário</p>
         <h1>Robin Summeretto </h1>
         <img src="imagens/bobin.png" width="700">
         <p>Aceita a divindade entrar em sua casa?</p>
+
+        <div id="contador">—</div>
+        <div id="legenda">pessoas já aceitaram</div>
+
+        <br>
         <button id="botaoAceitar">Aceitar</button>
         <p id="mensagem"></p>
 
         <script>
+            const CHAVE = 'culto-a-robin-summeretto-2026';
             const botao = document.getElementById('botaoAceitar');
             const mensagem = document.getElementById('mensagem');
+            const contadorEl = document.getElementById('contador');
+
+            let valorAtual = 0;
+
+            // Anima o número subindo suavemente de um valor até outro
+            function animarContagem(de, ate, duracaoMs) {
+                const inicio = performance.now();
+                function passo(agora) {
+                    const progresso = Math.min((agora - inicio) / duracaoMs, 1);
+                    const suavizado = 1 - Math.pow(1 - progresso, 3); // easing suave no final
+                    const valor = Math.round(de + (ate - de) * suavizado);
+                    contadorEl.textContent = valor.toLocaleString('pt-BR');
+                    if (progresso < 1) {
+                        requestAnimationFrame(passo);
+                    } else {
+                        valorAtual = ate;
+                    }
+                }
+                requestAnimationFrame(passo);
+            }
+
+            // Ao carregar a página, busca o valor atual sem incrementar
+            async function carregarValorInicial() {
+                try {
+                    const resposta = await fetch(`https://countapi.mileshilliard.com/api/v1/get/${CHAVE}`);
+                    const dados = await resposta.json();
+                    const total = Number(dados.value) || 0;
+                    animarContagem(0, total, 1200);
+                } catch (erro) {
+                    contadorEl.textContent = '0';
+                }
+            }
 
             botao.addEventListener('click', async () => {
                 botao.disabled = true;
                 botao.textContent = 'Contando...';
 
                 try {
-                    const resposta = await fetch('https://api.counterapi.dev/v1/culto-a-robin-summeretto/aceitos/up');
+                    const resposta = await fetch(`https://countapi.mileshilliard.com/api/v1/hit/${CHAVE}`);
                     const dados = await resposta.json();
-                    const total = dados.count.toLocaleString('pt-BR');
+                    const novoTotal = Number(dados.value);
 
-                    mensagem.textContent = `🎉 Parabéns! Você e mais ${total} pessoas já aceitaram a divindade!`;
+                    animarContagem(valorAtual, novoTotal, 900);
+                    mensagem.textContent = `🎉 Parabéns! Você acaba de aceitar a divindade!`;
                 } catch (erro) {
-                    mensagem.textContent = '🎉 Parabéns por aceitar! (não consegui contar agora, mas obrigado 💗)';
+                    mensagem.textContent = '🎉 Parabéns por aceitar! (não consegui atualizar o contador agora)';
                 } finally {
                     mensagem.classList.add('visivel');
                     botao.textContent = 'Aceito ✓';
                 }
             });
+
+            carregarValorInicial();
         </script>
     </body>
 </html>
